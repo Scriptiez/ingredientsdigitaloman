@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="static/logo.png">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif; 
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        
+body {
+    background-color:black;
+}
+/* Container for products */
+.container12 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Product Cards */
+.product-card {
+    border: 1px solid rgb(117, 191, 255);
+    padding: 15px;
+    width: 80%; /* Default width for larger screens */
+    text-align: center;
+    justify-content:center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    flex: 1 1 calc(33.33% - 20px); /* Allows flexible resizing */
+    margin-top:35px;
+}
+
+/* Dark Mode - Product Card */
+body.dark-mode .product-card {
+    background-color: #1e1e1e;
+    border-color: #444;
+}
+
+/* Product Images */
+.product-card img {
+    width: 30%;
+    object-fit: contain;
+}
+
+/* Product Titles */
+.product-card h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Links */
+.product-card a {
+    text-decoration: none;
+    color:rgb(213, 213, 213);
+}
+
+body.dark-mode .product-card a {
+    color: white;
+}
+
+.product-card a:hover {
+    color: #0073e6;
+}
+
+body.dark-mode .product-card a:hover {
+    color:rgb(30, 142, 255);
+}
+
+/* 🔥 Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        gap: 10px; /* Reduce spacing on small screens */
+    }
+
+    .logo-front img {
+        width:20%;
+    }
+
+    .product-card {
+        flex: 1 1 calc(50% - 10px); /* Two items per row */
+        font-size: 12px;
+    }
+    .product-card h2 {
+      margin-top: 20px; /* Moves the heading down */
+      font-size: 16px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card h2 {
+      margin-top: 30px; /* Push further down for very small screens */
+      font-size: 14px;
+  }
+
+  .logo-front img {
+    width:20%;
+   }
+}
+/* Dark Mode Button */
+#dark-mode-toggle {
+    z-index:1111111111111111111111111111111111111111111;
+  padding: 2px 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color:white; 
+    color: white;
+    font-size: 16px;
+}
+
+body.dark-mode #dark-mode-toggle {
+    background-color: white;
+}
+
+.market-btn {
+  z-index:1111111111111111111111111111111111111111111;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+  border-bottom: 2px solid rgb(30, 30, 30);
+  background-color: transparent;
+  color:rgb(113, 255, 91);
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 12px;
+  margin-right:5px;
+}
+body.dark-mode .market-btn {
+  z-index:1111111111111111111111111111111111111111111;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+  border-bottom: 2px solid rgba(74, 105, 190, 0.63);
+  background-color: rgba(184, 198, 255, 0.95);
+  color: #282828;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.top-bar {
+    z-index:1111111111111111111111111111111111111111111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Ensures vertical alignment */
+    padding: 5px 10px; /* Reduced padding */
+    background-color: #1e1e1e;
+    border-bottom: 2px solid #ddd;
+    height: 50px; /* Fixed height */
+}
+
+/* Dark Mode Styles for Top Bar */
+body.dark-mode .top-bar {
+    background-color: #1e1e1e;
+    border-bottom-color: #444;
+}
+
+.top-bar2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensures vertical alignment */
+  padding: 5px 10px; /* Reduced padding */
+  background-color: transparent;
+  border-bottom: 2px solid #ddd;
+  height: 50px; /* Fixed height */
+}
+
+/* Dark Mode Styles for Top Bar */
+body.dark-mode .top-bar2 {
+  background-color: transparent;
+  border-bottom-color: #444;
+}
+
+/* Logo Container to force centering */
+.logo-container {
+    z-index:1111111111111111111111111111111111111111111;
+    display: flex;
+    align-items: center; /* Centers logo vertically */
+    height: 100%; /* Full height of the top bar */
+}
+
+/* Logo Styling */
+.top-bar img {
+    z-index:1111111111111111111111111111111111111111111;
+    width: 8%; /* Adjust width */
+    min-width: 60px;
+    max-width: 100px;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent overflow */
+    vertical-align: middle; /* Align properly */
+    margin: auto 0; /* Auto margin to center vertically */
+    display: block;
+}
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+          }
+          .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.666);
+           }
+          
+           .container {
+            text-align: justify;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .content {
+            display: none;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .content {
+                font-size: 14px;
+            }
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0);
+            border: none;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.38);
+            border-radius: 5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .overlay1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            display: none; /* Initially hidden */
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .overlay-content1 {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            width: 100%;
+            height:100%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            overflow-y: auto; /* Enables scrolling */
+            position: relative;
+        }
+
+        .overlay-content1::-webkit-scrollbar {
+            width: 8px; /* Width of scrollbar */
+        }
+        
+        .overlay-content1::-webkit-scrollbar-track {
+            background: #000; /* Black background */
+            border-radius: 10px;
+        }
+        
+        .overlay-content1::-webkit-scrollbar-thumb {
+            background: rgb(0, 136, 255); /* Blue scrollbar */
+            border-radius: 10px;
+            border: 2px solid #000; /* Black border around scrollbar */
+        }
+        
+        .overlay-content1::-webkit-scrollbar-thumb:hover {
+            background: rgb(0, 72, 135) /* Darker blue when hovered */
+        }
+
+        .close-btn {
+            position: fixed;
+            bottom: 10%;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
+        }
+
+        .product-btn {
+            color:rgb(0, 136, 255);
+            border: none;
+            padding: 15px;
+            width: 250px; /* Default width for larger screens */
+            text-align: center;
+            justify-content:center;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color:rgba(17, 17, 17, 0.84);
+            transition: background-color 0.3s, transform 0.2s;
+            flex: 1 1 calc(33.33% - 20px); /* Allows flexible resizing */
+            max-width: 300px; /* Prevents cards from getting too big */
+        }
+        .product-btn1 {
+            color:rgb(0, 136, 255);
+            border: none;
+            padding: 15px;
+            width: 250px; /* Default width for larger screens */
+            text-align: center;
+            justify-content:center;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color:rgba(17, 17, 17, 0.84);
+            transition: background-color 0.3s, transform 0.2s;
+            flex: 1 1 calc(33.33% - 20px); /* Allows flexible resizing */
+            max-width: 300px; /* Prevents cards from getting too big */
+        }
+        .image-modal {
+            display: none; /* Hide by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999999999999999999999999999999999999999999999999999999999999; /* Ensure it's on top */
+        }
+        
+        .image-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 🔥 Close Button */
+        .close-modal1 {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        
+.lang-toggle {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(22, 22, 22, 0);
+    color: rgba(255, 255, 255, 0.57);
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="static/v1.webm" type="video/webm">
+      </video>
+      <div class="overlay"></div>
+      <div class="top-bar" style="margin-bottom: 0;">
+        <div class="logo-container"><h3 style="color:rgba(113, 255, 91, 0.323); font-family: cursive;"></h3></div>
+        <button class="market-btn" style="color: transparent; background-color: transparent; border: none;">Shop</button></div><!-- Gallery Section (Initially Hidden) -->
+      </div>
+
+      <button class="nav-btn prev" onclick="prevSlide()">&#10094;</button>
+
+    <div class="container">
+        <div class="content active" style="text-align:center; color:rgb(113, 255, 91);"><img style="width:10%;" class="logo-front" src="static/logo.png" alt="Ingredients"></div>
+        <div class="content" style="text-align:center;">Pioneering Excellence Since <span style="color:rgb(113, 255, 91);">2015<span></div>
+        <div class="content"><span style="color:rgb(113, 255, 91);">Fresh, quality groceries—your everyday favorites and special finds, all in one place:</span> <br><br><div>
+            <img style="width:15%;" src="static/stillorgan.png"  alt="StillOrgan">
+            <img style="width:15%;" src="static/wexford.png"  alt="Wexford">
+            <img style="width:15%;" src="static/finglas.png"  alt="Finglas">
+            <img style="width:15%;" src="static/bray.png"  alt="Bray">
+            <img style="width:15%;" src="static/drogheda.png"  alt="Drogheda">
+        </div></div>
+        <div class="content"><span style="color:rgb(113, 255, 91);">STILLORGAN</span> - 01 210 8080 &#9742; <div style="position: relative; width: 100%; height: 600px;">
+            <iframe
+              width="100%"
+              height="600"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=5%20Old%20Dublin%20Rd,%20Stillorgan,%20Dublin,%20A94%20K1H5,%20Ireland+(My%20Business%20Name)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+              style="filter: brightness(70%);"> </iframe>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); pointer-events: none;"></div></div></div>
+        <div class="content"><span style="color:rgb(113, 255, 91);">FINGLAS</span> - 01 834 4033 &#9742; <div style="position: relative; width: 100%; height: 600px;">
+            <iframe
+              width="100%"
+              height="600"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Unit%208,%20ALDI%20Supermarket%20Retail%20Area,%20St%20Margaret's%20Rd,%20Finglas,%20Co.%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+              style="filter: brightness(70%);"> </iframe>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); pointer-events: none;"></div></div></div>
+            <div class="content"><span style="color:rgb(113, 255, 91);">BRAY</span> - 01 286 8699 &#9742; <div style="position: relative; width: 100%; height: 600px;">
+                <iframe
+                  width="100%"
+                  height="600"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Unit%204/5,%20Raven%20Hall,%20Dublin%20Rd,%20Little%20Bray,%20Bray,%20Co.%20Wicklow,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                  style="filter: brightness(70%);"> </iframe>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); pointer-events: none;"></div></div></div>
+                <div class="content"><span style="color:rgb(113, 255, 91);">DROGHEDA</span> - 041 980 4668 &#9742; <div style="position: relative; width: 100%; height: 600px;">
+                    <iframe
+                      width="100%"
+                      height="600"
+                      frameborder="0"
+                      scrolling="no"
+                      marginheight="0"
+                      marginwidth="0"
+                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=ingredients%20drogheda+(My%20Business%20Naingredients%20droghedame)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                      style="filter: brightness(70%);"> </iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); pointer-events: none;"></div></div></div>
+                    <div class="content"><span style="color:rgb(113, 255, 91);">WEXFORD</span> - 051 851 525 &#9742; <div style="position: relative; width: 100%; height: 600px;">
+                        <iframe
+                          width="100%"
+                          height="600"
+                          frameborder="0"
+                          scrolling="no"
+                          marginheight="0"
+                          marginwidth="0"
+                          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=ingredients%20wexford+(My%20Business%20Naingredients%20droghedame)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                          style="filter: brightness(70%);"> </iframe>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); pointer-events: none;"></div></div></div>
+        <div class="content">Our Vision: <span style="color:rgb(113, 255, 91);">“To provide a huge variety of authentic food and spices, sourced from all over Asia in various forms; from ready-to-eat frozen foods to snacks, rice, fresh vegetables, spices, herbs, pickles, dry fruits & fish. We have products from the Philippines, Thailand, Malaysia, China, Singapore, Indonesia, India, Pakistan, Nigeria, Kenya, Korea, Japan and many more.”</span></div>
+        <div class="content" style="text-align:center;">Check-out our latest <span style="color:rgb(113, 255, 91);">events:</span> <button class="product-btn"><i class="fa fa-instagram" style="font-size:100%;color:rgb(234, 0, 255)"></i></button><br><br>Check-out our shopvisit <span style="color:rgb(113, 255, 91);">video:</span> 
+            <button class="product-btn1"><i class="fa fa-youtube-play" style="font-size:100%;color:red"></i></button>
+            </div>
+    </div>
+
+    <button class="nav-btn next" onclick="nextSlide()">&#10095;</button>
+
+    <!-- Overlay -->
+    <!-- Fullscreen Overlay -->
+<div id="overlay1" class="overlay1">
+    <div class="overlay-content1">
+        <h2 id="overlay-title1"></h2>
+        <p id="overlay-text1"></p>
+        <div id="overlay-extra-content1"></div>
+    </div>
+    <footer><button class="nav-btn next" onclick="closeOverlay()">&#10006;</button></footer>
+</div>
+
+<!-- Gallery Section (Initially Hidden) -->
+<div class="container12" id="product-list" style="display: none;">
+</div>
+
+
+    <script>
+        function downloadFiles() {
+            // Define the file URLs
+            const files = [
+                "static/Al Ariq 1.pdf",
+                "static/Al Ariq 2.pdf"
+            ];
+        
+            // Loop through files and trigger download
+            files.forEach(file => {
+                const link = document.createElement("a");
+                link.href = file;
+                link.download = file.split('/').pop(); // Extracts filename from URL
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+        
+        function showOverlay1(product) {
+            const overlay = document.getElementById("overlay1");
+            const title = document.getElementById("overlay-title1");
+            const text = document.getElementById("overlay-text1");
+            const extraContent = document.getElementById("overlay-extra-content1");
+            
+            overlay.style.display = "flex"; // Show overlay
+            extraContent.innerHTML = ""; // Clear previous content
+        
+            if (product === "Gallery") {
+                // Show gallery content inside overlay
+                const galleryContent = document.getElementById("product-list").innerHTML;
+                extraContent.innerHTML = galleryContent;
+                
+            } else if (product === "Download") {
+                title.innerText = "Download";
+                text.innerText = "Download our latest catalogs, brochures, and informative documents.";
+        
+                // Add a sample download link (You can replace it with real links)
+                extraContent.innerHTML = `<a href="static/catalog.pdf" download>Click here to download the catalog</a>`;
+            }
+        }
+        
+        // Close the overlay
+        function closeOverlay() {
+            document.getElementById("overlay1").style.display = "none";
+        }        
+    </script>
+
+<script>
+  document.querySelectorAll("#orderForm .input").forEach(input => {
+    input.addEventListener("input", function() {
+        let displayDiv = document.getElementById("displayInputs");
+        displayDiv.innerHTML = `<p><strong>${this.placeholder}:</strong> ${this.value}</p>`;
+    });
+});
+
+  document.querySelector(".market-btn").addEventListener("click", function () {
+    window.location.href = "/shop.html";
+});
+
+document.querySelector(".product-btn1").addEventListener("click", function () {
+    window.location.href = "https://www.youtube.com/watch?v=HmQ3zW28cjU";
+}); 
+document.querySelector(".product-btn").addEventListener("click", function () {
+    window.location.href = "https://www.instagram.com/ingredientssupermarket/?hl=en";
+});
+  document.addEventListener("DOMContentLoaded", function () {
+      let allMachines = [];  // Store machines in order
+      let currentIndex = 0;  // Track pagination (lazy loading)
+      let isLoading = false; // Prevent duplicate requests
+
+      function createProductCard(name, details) {
+          let card = document.createElement("div");
+          card.classList.add("product-card");
+          card.setAttribute("data-name", name.toLowerCase()); 
+          card.setAttribute("data-manufacturer", details[0].toLowerCase());
+          card.setAttribute("data-type", details[1].toLowerCase());
+
+          card.innerHTML = `
+              <a>
+                  <img src="/static/images/${name}.png" alt="${name}" onclick="openImageModal('static/images/${name}.png')">
+                  <h2 style="color:rgb(117, 191, 255);">${name}</h2>
+              </a>
+          `;
+          return card;
+      }
+
+      function displayProducts(machines, reset = false) {
+          const productList = document.getElementById("product-list");
+          if (reset) {
+              productList.innerHTML = "";  // Clear when searching
+              currentIndex = 0;
+          }
+
+          let nextBatch = machines.slice(currentIndex, currentIndex + 8); 
+          nextBatch.forEach(([name, details]) => {
+              let card = createProductCard(name, details);
+              productList.appendChild(card);
+          });
+
+          currentIndex += 8;
+      }
+
+      function loadProducts(start = 0, searchQuery = "") {
+          if (isLoading) return;
+          isLoading = true;
+
+          let url = searchQuery
+              ? `/search-btnRedirect?q=${searchQuery}`  // Fetch search results
+              : `/load-btnRedirect?start=${start}`;  // Fetch next batch
+
+          fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                  if (start === 0) {
+                      allMachines = data;  // Reset and store machines
+                      displayProducts(allMachines, true);
+                  } else {
+                      allMachines = [...allMachines, ...data];  // Append new data
+                      displayProducts(allMachines);
+                  }
+                  isLoading = false;
+              })
+              .catch(error => console.error("Error loading machines:", error));
+      }
+
+      // ✅ Fetch first batch on page load
+      loadProducts();
+
+      // ✅ Search functionality (server-side)
+      document.getElementById("search-bar").addEventListener("input", function () {
+          let query = this.value.trim().toLowerCase();
+          loadProducts(0, query); // Reset index and fetch new results
+      });
+
+      // ✅ Infinite Scroll for pagination
+      window.addEventListener("scroll", function () {
+          if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+              loadProducts(currentIndex);
+          }
+      });
+  });
+</script>
+
+    <script>
+        let currentIndex = 0;
+        const contents = document.querySelectorAll(".content");
+        const totalSlides = contents.length;
+
+        function showSlide(index) {
+            contents.forEach(content => content.classList.remove("active"));
+            contents[index].classList.add("active");
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        let autoSlide = setInterval(nextSlide, 3000);
+let isPaused = false;
+
+// Function to start auto-slide (only when manually resumed)
+function startAutoSlide() {
+    if (isPaused) {
+        isPaused = false;
+        autoSlide = setInterval(nextSlide, 5000);
+    }
+}
+
+// Function to stop auto-slide
+function stopAutoSlide() {
+    clearInterval(autoSlide);
+    isPaused = true;
+}
+
+// Function to toggle pause/play (excluding arrow keys)
+function togglePausePlay() {
+    if (isPaused) {
+        startAutoSlide(); // Resume if paused
+    } else {
+        stopAutoSlide();  // Pause if playing
+    }
+}
+
+// Detect key presses
+document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowRight") {
+        nextSlide();
+    } else if (event.key === "ArrowLeft") {
+        prevSlide();
+    } else {
+        togglePausePlay(); // Toggle pause/play for any other key
+    }
+});
+
+// Detect mouse clicks (left-click = 0, right-click = 2)
+document.addEventListener("mousedown", function (event) {
+    if (event.button !== 1) { // Ignore middle mouse click
+        togglePausePlay();
+    }
+});
+
+    </script>
+
+    <script>
+
+        document.querySelector(".market-btn").addEventListener("click", function () {
+            window.location.href = "/shop.html";
+        });
+        var video = document.getElementById("myVideo");
+        
+        </script>
+
+        <div class="image-modal" id="imageModal">
+            <button class="close-modal1" onclick="closeImageModal()">✖</button>
+            <img id="fullImage" src="" alt="Product Image">
+          </div>
+          <script>
+            function openImageModal(imageSrc) {
+                document.getElementById("fullImage").src = imageSrc;
+                document.getElementById("imageModal").style.display = "flex"; // Show modal
+              }
+              
+              // 🔥 Function to Close the Image Popup
+              function closeImageModal() {
+                document.getElementById("imageModal").style.display = "none"; // Hide modal
+              }
+              
+              // 🔥 Close modal if user clicks outside the image
+              document.getElementById("imageModal").addEventListener("click", function(event) {
+                if (event.target === this) {
+                    closeImageModal();
+                }
+              });
+              
+                  </script>   
+</body>
+</html>
